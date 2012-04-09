@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="span5">
+        {{#alert.success}}
+            <div class="alert alert-success">
+                Hey, thanks for posting this important information!
+                <br>Now get the fuck out of here <a href="{{basedir}}test/sanity">&gt;&gt;&gt;&gt;</a>
+            </div>
+        {{/alert.success}}
+        
+        {{#alert.fail}}
+            <div class="alert alert-error">
+                <a class="close" data-dismiss="alert">×</a>
+                Oh shit, you fucked it up...
+            </div>
+            <div class="alert alert-info">
+                <a class="close" data-dismiss="alert">×</a>
+                {{#alert.partial}}
+                    Try filling out the whole form, you tard.
+                {{/alert.partial}}
+                
+                {{#alert.none}}
+                    Forms are to be filled out. 
+                {{/alert.none}}                  
+            </div>
+        {{/alert.fail}}
+        
+        {{^alert.success}}
+        <form class="well" method="POST">
+          <label>Label name</label>
+          <input type="text" class="span3" name="something" placeholder="Type something…" value="{{something}}">
+          <span class="help-inline">Associated help text!</span>
+          <label class="checkbox">
+            <input name="lookhere" type="checkbox" {{#lookhere}}checked=checked{{/lookhere}}> Check me out
+          </label>
+          <button type="submit" class="btn">Submit</button>
+        </form>
+        {{/alert.success}}
+    </div>
+</div>

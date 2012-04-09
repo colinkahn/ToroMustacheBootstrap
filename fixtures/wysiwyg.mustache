@@ -1,0 +1,21 @@
+<div class="container">
+	
+	{{^status.posted}}
+	<div class="hero-unit" style="margin-top:40px">
+        <form method="POST" style="margin:0">
+    		<h1 style="font-size:58px">bootstrap-wysihtml5 <small>Simple, beautiful wysiwyg editors</small></h1>
+    		<hr/>
+    		<textarea id="textarea" name="textarea" placeholder="Enter text ..." style="width: 810px; height: 200px"></textarea>
+    		<button type="submit" class="btn">Submit</button>
+		</form>
+	</div>
+	{{/status.posted}}
+	
+	{{#status.posted}}
+	   <div class="hero-unit" style="margin-top:40px">
+	       <a class="btn" href=""><i class="icon-refresh"></i> Refresh</a>
+	       <hr>
+	       {{& results}}
+	   </div>
+	{{/status.posted}}
+</div>
