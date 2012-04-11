@@ -3,7 +3,10 @@
         {{#alert.success}}
             <div class="alert alert-success">
                 Hey, thanks for posting this important information!
-                <br>Now get the fuck out of here <a href="{{basedir}}test/sanity">&gt;&gt;&gt;&gt;</a>
+                <br>
+            </div>
+            <div>
+                <a href="{{basedir}}test/sanity" class="btn">Now get the fuck out of here <i class="icon-arrow-right"></i></a>
             </div>
         {{/alert.success}}
         
@@ -27,7 +30,7 @@
         {{^alert.success}}
         <form class="well" method="POST">
           <label>Label name</label>
-          <input type="text" class="span3" name="something" placeholder="Type something…" value="{{something}}">
+          <input type="text" class="span3 typeahead" name="something" placeholder="Type something…" value="{{something}}">
           <span class="help-inline">Associated help text!</span>
           <label class="checkbox">
             <input name="lookhere" type="checkbox" {{#lookhere}}checked=checked{{/lookhere}}> Check me out

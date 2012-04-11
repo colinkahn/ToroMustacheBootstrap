@@ -1,6 +1,8 @@
 <?php
 require_once 'toro.php';
 require_once 'TemplateEngine.class.php';
+require_once 'inc/NavLists.class.php';
+require_once 'inc/Breadcrumbs.class.php';
 
 
 class MainHandler extends ToroHandler {
@@ -22,6 +24,27 @@ class TestHandler extends ToroHandler {
     }
 }
 
+class GalleryHandler extends ToroHandler {
+    public $template = "{{> header }}{{> navigation }}{{> gallery }}{{> footer }}";
+    
+    public function get() {
+        $t = new TemplateEngine($this->template);
+        $t->extra_foot = "<script>$('.carousel').carousel()</script>";
+        $t->subnav = getSubNav();
+        $t->subnav->makeActive('Home');
+        $t->breadcrumbs = $this->breadcrumbs();
+		echo $t->render();
+    }
+    
+    public function breadcrumbs()
+    {
+        $bc = new Breadcrumbs();
+        $bc->add('Home',' ');
+        $bc->add('Gallery','gallery');
+        return $bc;
+    }
+}
+
 class FormHandler extends ToroHandler {
     public $template = "{{> header }}{{> navigation }}{{> form }}{{> footer }}";
     public $context = array();
@@ -29,6 +52,7 @@ class FormHandler extends ToroHandler {
     public function get() {
        $t = new TemplateEngine($this->template);
        $t->addToContext($this->context);
+       $t->extra_foot = "<script>$('.typeahead').typeahead({source:['Brian Eno', 'Robert Fripp']})</script>";
        echo $t->render(); 
     }
     
@@ -57,7 +81,9 @@ class WysiwygHandler extends ToroHandler {
 
     public function get() {
         $t = new TemplateEngine($this->template);
-        $t->extra_foot = '<script type="text/javascript">$("#textarea").wysihtml5();</script>';
+        if (!isset($this->context['status']['posted']))
+            $t->extra_foot = '<script type="text/javascript">$("#textarea").wysihtml5();</script>';
+        
         $t->addToContext($this->context);
         echo $t->render();
     }
@@ -71,11 +97,32 @@ class WysiwygHandler extends ToroHandler {
     }
 }
 
+function getSubNav() {
+    $subnav = new NavLists();
+    $subnav->addSection();
+    $subnav->addListHeader('List Header');
+    $subnav->addListItem('Home', ' ', 'home');
+    $subnav->addListItem('Library', 'library', 'book');
+        
+    $subnav->addSection();
+    $subnav->addListHeader('Another list header');
+    $subnav->addListItem('Profile', 'profile', 'user');
+    $subnav->addListItem('Settings', 'settings', 'cog');
+    
+    $subnav->addDivider();
+    
+    $subnav->addSection();
+    $subnav->addListItem('Help', 'help', 'flag');
+    
+    return $subnav;
+}
+
 $site = new ToroApplication(array(
     array('/', 'MainHandler'),
     array('test/([a-z]+)', 'TestHandler'),
     array('form', 'FormHandler'),
     array('wysiwyg', 'WysiwygHandler'),
+    array('gallery', 'GalleryHandler'),
 ));    
 
 

@@ -11,6 +11,7 @@ class TemplateEngine extends Mustache {
         array('name'=>'Test Nothing', 'url'=>'test/nothing'),
         array('name'=>'Form', 'url'=>'form'),
         array('name'=>'WYSIWYG', 'url'=>'wysiwyg'),
+        array('name'=>'Gallery', 'url'=>'gallery'),
     );
      
     public function __construct($template = null, $view = null, $partials = null, array $options = null) {
