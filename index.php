@@ -77,6 +77,16 @@ class FormHandler extends ToroHandler {
 
 class WysiwygHandler extends ToroHandler {
     public $template = "{{> header }}{{> navigation }}{{> wysiwyg }}{{> footer }}";
+    /*
+        Extend ToroHandler with another class 
+        Add a 'bin' function to that class
+        toss stuff in the bin and then add it to the context of Mustache
+        or somehow add the whole class to the context, like just (array)$this
+        change template to something private (do private properties become array key=>values?)
+        actually use get_object_vars() since it only gets visible variables (but… if we do that within the class we get everything right?)
+        actually… use the function i've added to inc/Utilities 
+    */
+    
     public $context = array();
 
     public function get() {

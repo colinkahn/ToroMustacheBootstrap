@@ -1,8 +1,14 @@
 <?php
 
-class NavLists
+class NavLists extends MustacheBase
 {
     public $sections = array();
+    
+    public function __construct()
+    {
+        $fixtures = Fixtures::getInstance();
+        parent::__construct($template = "{{> navlists }}", null, $partials = $fixtures->partials, null);
+    }
     
     public function addSection($list_header=null, $list_items=array(), $divider=false)
     {
@@ -52,6 +58,11 @@ class NavLists
     private function lastSection()
     {
         return count($this->sections) - 1;
+    }
+    
+    public function __toString()
+    {
+        return $this->render();
     }
 
 }

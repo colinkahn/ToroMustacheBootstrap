@@ -1,8 +1,14 @@
 <?php
 
-class Breadcrumbs
+class Breadcrumbs extends MustacheBase
 {
     public $list_items = array();
+    
+    public function __construct()
+    {
+        $fixtures = Fixtures::getInstance();
+        parent::__construct($template = "{{> breadcrumbs }}", null, $partials = $fixtures->partials, null);
+    }    
 
     public function add($name, $url=null)
     {
@@ -23,5 +29,10 @@ class Breadcrumbs
     {
         // No Imp
     }
+    
+    public function __toString()
+    {
+        return $this->render();
+    }    
 
 }

@@ -1,0 +1,19 @@
+<div class="well" style="padding: 8px 0;">
+    <ul class="nav nav-list">
+        {{#sections}}        
+        {{#list_header}}<li class="nav-header">{{& list_header}}</li>{{/list_header}}
+              
+        {{#list_items}}
+            <li {{#active}}class="active"{{/active}}>
+                {{#url}}<a href="{{basedir}}{{url}}">{{/url}}
+                    {{#icon}}<i class="{{icon}} {{#active}}icon-white{{/active}}"></i>{{/icon}}
+                    {{& name}}
+                {{#url}}</a>{{/url}}
+            </li>        
+        {{/list_items}}
+        
+        {{#divider}}<li class="divider"></li>{{/divider}}
+        
+        {{/sections}}          
+    </ul>
+</div>

@@ -30,6 +30,7 @@
     );
 */
 
+require_once(dirname(__FILE__) . '/../TemplateEngine.class.php');
 require_once(dirname(__FILE__) . '/../inc/NavLists.class.php');
 
 class NavListsTest extends PHPUnit_Framework_TestCase
@@ -128,7 +129,5 @@ class NavListsTest extends PHPUnit_Framework_TestCase
         $a = (array)$subnav;
         $this->assertEquals(3, count($a['sections']));
         $this->assertEquals(true, $a['sections'][1]['divider']);
-    }
-    
-    
+    }   
 }
