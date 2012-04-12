@@ -1,13 +1,15 @@
 <?php
 
-class Breadcrumbs extends MustacheBase
+namespace tbcomponents;
+use TemplateEngine;
+
+class Breadcrumbs extends TemplateEngine
 {
     public $list_items = array();
     
     public function __construct()
     {
-        $fixtures = Fixtures::getInstance();
-        parent::__construct($template = "{{> breadcrumbs }}", null, $partials = $fixtures->partials, null);
+        parent::__construct($template = "{{> breadcrumbs }}");
     }    
 
     public function add($name, $url=null)

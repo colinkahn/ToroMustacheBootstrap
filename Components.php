@@ -1,5 +1,7 @@
 <?php
 
+namespace tbcomponents;
+
 class Components {
 
     public static function subnav() 

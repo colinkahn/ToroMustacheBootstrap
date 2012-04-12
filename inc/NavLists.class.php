@@ -1,13 +1,15 @@
 <?php
 
-class NavLists extends MustacheBase
+namespace tbcomponents;
+use TemplateEngine;
+
+class NavLists extends TemplateEngine
 {
     public $sections = array();
     
     public function __construct()
     {
-        $fixtures = Fixtures::getInstance();
-        parent::__construct($template = "{{> navlists }}", null, $partials = $fixtures->partials, null);
+        parent::__construct($template = "{{> navlists }}");
     }
     
     public function addSection($list_header=null, $list_items=array(), $divider=false)
