@@ -2,5 +2,6 @@
 
 class Settings
 {
-    public static $basedir = "/~temp/toro/";
+    const BASEDIR = "/~temp/toro/";
+    const HOME = " ";
 }

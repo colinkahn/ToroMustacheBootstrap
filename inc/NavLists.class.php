@@ -1,16 +1,11 @@
 <?php
 
 namespace tbcomponents;
-use TemplateEngine;
 
-class NavLists extends TemplateEngine
+class NavLists extends ComponentBase
 {
     public $sections = array();
-    
-    public function __construct()
-    {
-        parent::__construct($template = "{{> navlists }}");
-    }
+    public $template = "{{> navlists }}";
     
     public function addSection($list_header=null, $list_items=array(), $divider=false)
     {
@@ -60,11 +55,6 @@ class NavLists extends TemplateEngine
     private function lastSection()
     {
         return count($this->sections) - 1;
-    }
-    
-    public function __toString()
-    {
-        return $this->render();
     }
 
 }

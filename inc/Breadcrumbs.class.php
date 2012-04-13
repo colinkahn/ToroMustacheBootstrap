@@ -1,16 +1,11 @@
 <?php
 
 namespace tbcomponents;
-use TemplateEngine;
 
-class Breadcrumbs extends TemplateEngine
+class Breadcrumbs extends ComponentBase
 {
     public $list_items = array();
-    
-    public function __construct()
-    {
-        parent::__construct($template = "{{> breadcrumbs }}");
-    }    
+    public $template = "{{> breadcrumbs }}";    
 
     public function add($name, $url=null)
     {
@@ -30,11 +25,6 @@ class Breadcrumbs extends TemplateEngine
     public function remove($name) 
     {
         // No Imp
-    }
-    
-    public function __toString()
-    {
-        return $this->render();
-    }    
+    }  
 
 }

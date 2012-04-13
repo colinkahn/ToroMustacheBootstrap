@@ -3,6 +3,8 @@
 class ToroMustacheHandler extends ToroHandler
 {
     public function __construct() { 
+        $this->db = new Database();
+    
         $meths = get_static_methods('tbcomponents\Components');
         
         foreach ($meths as $meth) {

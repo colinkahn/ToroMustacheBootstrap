@@ -5,6 +5,11 @@ class MainHandler extends ToroMustacheHandler {
     public $content = '<h1>Bootstrap starter template</h1><p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>';
 
     public function get() {
+        $this->db->dom->appendChild($this->db->dom->createElement('page'));
+        //$this->db->createElement('test', 'This is the root element!')
+        //$this->db->set('//user/name', 'John Doe');
+        $this->db->save();
+        $this->navigation->makeActive('Home');
         $this->render();
     }
 }
@@ -15,6 +20,7 @@ class TestHandler extends ToroMustacheHandler {
     public $template = "{{> header }}{{> navigation }}{{> test }}{{> footer }}";
     
     public function get( $testing ) {
+        $this->navigation->makeActive('Test '. ucfirst($testing));
         $this->content = $testing;
 		$this->render();
     }
@@ -27,6 +33,7 @@ class GalleryHandler extends ToroMustacheHandler {
     public $extra_foot = "<script>$('.carousel').carousel()</script>";
     
     public function get() {
+        $this->navigation->makeActive('Gallery');
         $this->subnav->makeActive('Home');
         $this->breadcrumbs->add('Gallery','gallery');
 		
@@ -42,7 +49,8 @@ class FormHandler extends ToroMustacheHandler {
     public $extra_foot = "<script>$('.typeahead').typeahead({source:['Brian Eno', 'Robert Fripp']})</script>";
     
     public function get() {
-       $this->render(); 
+        $this->navigation->makeActive('Form');
+        $this->render(); 
     }
     
     public function post() {
@@ -71,6 +79,7 @@ class WysiwygHandler extends ToroMustacheHandler {
         if (!property_exists($this, 'status') && isset($this->status['posted']))
             $this->extra_foot = '<script type="text/javascript">$("#textarea").wysihtml5();</script>';
         
+        $this->navigation->makeActive('WYSIWYG');
         $this->render();
     }
     

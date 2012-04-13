@@ -8,8 +8,8 @@ class TemplateEngine extends Mustache   {
             $partials = $fixtures->partials;
         }
         
-        if (property_exists('Settings', 'basedir'))
-            $this->basedir = Settings::$basedir;
+        if (defined('Settings::BASEDIR'))
+            $this->basedir = Settings::BASEDIR;
         
         parent::__construct($template, $view, $partials, $options);
     }

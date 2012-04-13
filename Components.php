@@ -1,6 +1,7 @@
 <?php
 
 namespace tbcomponents;
+use Settings;
 
 class Components {
 
@@ -9,7 +10,7 @@ class Components {
         $subnav = new NavLists();
         $subnav->addSection();
         $subnav->addListHeader('List Header');
-        $subnav->addListItem('Home', ' ', 'home');
+        $subnav->addListItem('Home', Settings::HOME, 'home');
         $subnav->addListItem('Library', 'library', 'book');
             
         $subnav->addSection();
@@ -28,21 +29,28 @@ class Components {
     public static function navigation()
     {
     
-        return array(
-            array('name'=>'Home', 'url'=>''),
-            array('name'=>'Test Something', 'url'=>'test/something'),
-            array('name'=>'Test Nothing', 'url'=>'test/nothing'),
-            array('name'=>'Form', 'url'=>'form'),
-            array('name'=>'WYSIWYG', 'url'=>'wysiwyg'),
-            array('name'=>'Gallery', 'url'=>'gallery'),
-        );    
+        $nav = new Navbar();
+        
+        $nav->addBrandname('Toro!');
+        
+        $nav->addNavList();
+        $nav->addListItem('Home', Settings::HOME);
+        $nav->addListItem('Test Something', 'test/something');
+        $nav->addListItem('Test Nothing', 'test/nothing');
+        $nav->addListItem('Form', 'form');
+        $nav->addListItem('WYSIWYG', 'wysiwyg');
+        $nav->addListItem('Gallery', 'gallery');
+        
+        $nav->addNavForm(Navbar::SEARCH, 'search', Navbar::PULL_RIGHT);
+    
+        return $nav;   
     
     }
     
     public static function breadcrumbs()
     {
         $bc = new Breadcrumbs();
-        $bc->add('Home',' ');
+        $bc->add('Home',Settings::HOME);
         return $bc;
     }
 
