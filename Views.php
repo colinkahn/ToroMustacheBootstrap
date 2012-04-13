@@ -5,10 +5,6 @@ class MainHandler extends ToroMustacheHandler {
     public $content = '<h1>Bootstrap starter template</h1><p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>';
 
     public function get() {
-        $this->db->dom->appendChild($this->db->dom->createElement('page'));
-        //$this->db->createElement('test', 'This is the root element!')
-        //$this->db->set('//user/name', 'John Doe');
-        $this->db->save();
         $this->navigation->makeActive('Home');
         $this->render();
     }
@@ -88,4 +84,40 @@ class WysiwygHandler extends ToroMustacheHandler {
         $this->results = $_POST['textarea'];
         $this->get();
     }
+}
+
+
+
+class SignUpHandler extends ToroMustacheHandler {
+    public $template = "{{> header }}{{> navigation }}{{> signup }}{{> footer }}";
+    
+    public function get() {
+        $this->render();
+    }
+    
+    public function post() {
+        $this->signature = $_POST['signature'];
+                
+        if (!$this->signature) {
+            $this->alert = Alert::status('fail');
+        } else if ($this->db->checkSignature($this->signature)) {
+            $this->alert = Alert::status('exists');
+        } else {
+            $this->alert = Alert::status('success');
+            $this->db->addSignature($this->signature);
+        }
+        
+        $this->get();
+    }
+
+}
+
+class SignaturesHandler extends ToroMustacheHandler {
+    public $template = "{{> header }}{{> navigation }}{{> signatures }}{{> footer }}";
+
+    public function get() {
+        $this->signatures = $this->db->getSignatures();
+        $this->render();
+    }
+
 }

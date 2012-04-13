@@ -1,7 +1,7 @@
 <?php
 
 require_once 'inc/toro.php';
-require_once 'inc/Database.class.php';
+require_once 'Database.php';
 require_once 'Settings.php';
 require_once 'inc/Mustache.php';
 require_once 'inc/MustacheLoader.php';
@@ -12,6 +12,7 @@ require_once 'inc/ComponentBase.class.php';
 require_once 'inc/Navbar.class.php';
 require_once 'inc/NavLists.class.php';
 require_once 'inc/Breadcrumbs.class.php';
+require_once 'inc/Alert.class.php';
 require_once 'inc/Utilities.php';
 require_once 'Components.php';
 require_once 'Views.php';

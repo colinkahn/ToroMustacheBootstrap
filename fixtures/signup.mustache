@@ -1,0 +1,34 @@
+<div class="container">
+        {{#alert.success}}
+            <div class="alert alert-success">
+                <a class="close" data-dismiss="alert">×</a>
+                Hey thanks! We're one step closer to getting that awesome pretzel rack! 
+                <a href="{{basedir}}signatures">Check out who else has signed.</a>
+            </div>
+        {{/alert.success}}
+        
+        {{#alert.fail}}
+            <div class="alert alert-error">
+                <a class="close" data-dismiss="alert">×</a>
+                Fill out your name dumbass.
+            </div>
+        {{/alert.fail}}
+
+        {{#alert.exists}}
+            <div class="alert alert-error">
+                <a class="close" data-dismiss="alert">×</a>
+                You've already signed up for more pretzels bro!
+            </div>
+        {{/alert.exists}} 
+        
+        <div class="hero-unit">
+            <h1>Who wants more pretzels?</h1>
+            <p>Everyone does! Who doesn't want a nice hot pretzel on a Friday while drinking a beer at the office? <a href="http://www.katom.com/062-16PDA.html">Check it out</a>. Sign below and we'll totally get that awesome revolving pretzel warmer (yeah it revolves!).</p>
+            <form class="form-inline" method="POST">
+                <input type="text" class="typeahead" name="signature" placeholder="Sign Here…" value=""> 
+                <button type="submit" class="btn">Submit</button>
+            </form>                           
+        </div>  
+        
+     
+</div>

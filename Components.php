@@ -40,6 +40,7 @@ class Components {
         $nav->addListItem('Form', 'form');
         $nav->addListItem('WYSIWYG', 'wysiwyg');
         $nav->addListItem('Gallery', 'gallery');
+        $nav->addListItem('Sign Up', 'signup');
         
         $nav->addNavForm(Navbar::SEARCH, 'search', Navbar::PULL_RIGHT);
     

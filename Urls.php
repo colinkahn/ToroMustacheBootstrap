@@ -6,4 +6,6 @@ $site = new ToroApplication(array(
     array('form', 'FormHandler'),
     array('wysiwyg', 'WysiwygHandler'),
     array('gallery', 'GalleryHandler'),
+    array('signup', 'SignUpHandler'),
+    array('signatures', 'SignaturesHandler'),
 ));  
