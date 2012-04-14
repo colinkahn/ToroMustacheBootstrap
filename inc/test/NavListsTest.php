@@ -30,8 +30,10 @@
     );
 */
 
-require_once(dirname(__FILE__) . '/../TemplateEngine.class.php');
+require_once(dirname(__FILE__) . '/deps.php');
 require_once(dirname(__FILE__) . '/../NavLists.class.php');
+
+use tbcomponents\NavLists;
 
 class NavListsTest extends PHPUnit_Framework_TestCase
 {

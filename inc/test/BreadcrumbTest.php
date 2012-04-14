@@ -1,6 +1,9 @@
 <?php
 
+require_once(dirname(__FILE__) . '/deps.php');
 require_once(dirname(__FILE__) . '/../Breadcrumbs.class.php');
+
+use tbcomponents\Breadcrumbs;
 
 class BreadcrumbTest extends PHPUnit_Framework_TestCase
 {

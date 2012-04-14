@@ -1,6 +1,7 @@
 <?php
 
 class MainHandler extends ToroMustacheHandler {
+    public $pagetitle = "Main Page";
     public $template = "{{> header }}{{> navigation }}{{> content }}{{> footer }}";
     public $content = '<h1>Bootstrap starter template</h1><p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>';
 
@@ -13,6 +14,7 @@ class MainHandler extends ToroMustacheHandler {
 
 
 class TestHandler extends ToroMustacheHandler {
+    public $pagetitle = "Test Page";
     public $template = "{{> header }}{{> navigation }}{{> test }}{{> footer }}";
     
     public function get( $testing ) {
@@ -25,6 +27,7 @@ class TestHandler extends ToroMustacheHandler {
 
 
 class GalleryHandler extends ToroMustacheHandler {
+    public $pagetitle = "Gallery";
     public $template = "{{> header }}{{> navigation }}{{> gallery }}{{> footer }}";
     public $extra_foot = "<script>$('.carousel').carousel()</script>";
     
@@ -41,6 +44,7 @@ class GalleryHandler extends ToroMustacheHandler {
 
 
 class FormHandler extends ToroMustacheHandler {
+    public $pagetitle = "Form";
     public $template = "{{> header }}{{> navigation }}{{> form }}{{> footer }}";
     public $extra_foot = "<script>$('.typeahead').typeahead({source:['Brian Eno', 'Robert Fripp']})</script>";
     
@@ -69,6 +73,7 @@ class FormHandler extends ToroMustacheHandler {
 
 
 class WysiwygHandler extends ToroMustacheHandler {
+    public $pagetitle = "WYSIWYG";
     public $template = "{{> header }}{{> navigation }}{{> wysiwyg }}{{> footer }}";
 
     public function get() {
@@ -89,6 +94,7 @@ class WysiwygHandler extends ToroMustacheHandler {
 
 
 class SignUpHandler extends ToroMustacheHandler {
+    public $pagetitle = "Sign Up!";
     public $template = "{{> header }}{{> navigation }}{{> signup }}{{> footer }}";
     
     public function get() {
@@ -113,6 +119,7 @@ class SignUpHandler extends ToroMustacheHandler {
 }
 
 class SignaturesHandler extends ToroMustacheHandler {
+    public $pagetitle = "Signatures";
     public $template = "{{> header }}{{> navigation }}{{> signatures }}{{> footer }}";
 
     public function get() {

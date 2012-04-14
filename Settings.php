@@ -2,6 +2,6 @@
 
 class Settings
 {
-    const BASEDIR = "/~temp/toro/";
+    const BASEDIR = "/~temp/ToroMustacheBootstrap/";
     const HOME = " ";
 }
