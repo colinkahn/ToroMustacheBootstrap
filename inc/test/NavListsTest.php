@@ -131,5 +131,41 @@ class NavListsTest extends PHPUnit_Framework_TestCase
         $a = (array)$subnav;
         $this->assertEquals(3, count($a['sections']));
         $this->assertEquals(true, $a['sections'][1]['divider']);
-    }   
+    }  
+    
+    public function testShorterSyntax()
+    {
+        $subnav = new NavLists();
+        $subnav
+            ->addSection()
+                ->addListHeader('List Header')
+                ->addListItem('Home', '/', 'home')
+                ->addListItem('Library', 'library', 'book')
+            ->addDivider()
+            ->addSection()
+                ->addListHeader('Another list header')
+                ->addListItem('Profile', 'profile', 'user')
+                ->addListItem('Settings', 'settings', 'cog') 
+            ->makeActive('Profile');     
+        
+        $a = (array)$subnav;
+        $this->assertEquals(3, count($a['sections']));
+        $this->assertEquals('List Header', $a['sections'][0]['list_header']);
+        $this->assertEquals(2, count($a['sections'][0]['list_items'])); 
+        
+        $this->assertArrayHasKey('name', $a['sections'][0]['list_items'][0]);
+        $this->assertArrayHasKey('url', $a['sections'][0]['list_items'][0]);
+        $this->assertArrayHasKey('icon', $a['sections'][0]['list_items'][0]);
+        $this->assertArrayHasKey('active', $a['sections'][0]['list_items'][0]);
+        
+        $this->assertEquals('Home', $a['sections'][0]['list_items'][0]['name']);
+        $this->assertEquals('/', $a['sections'][0]['list_items'][0]['url']);
+        // Auto adds 'icon-'
+        $this->assertEquals('icon-home', $a['sections'][0]['list_items'][0]['icon']);
+        $this->assertEquals(false, $a['sections'][0]['list_items'][0]['active']);    
+        $this->assertEquals(true, $a['sections'][2]['list_items'][0]['active']);
+        
+        $this->assertEquals(true, $a['sections'][1]['divider']);
+    
+    } 
 }

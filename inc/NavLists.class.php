@@ -10,12 +10,14 @@ class NavLists extends ComponentBase
     public function addSection($list_header=null, $list_items=array(), $divider=false)
     {
         $this->sections[] = array('list_header'=>$list_header, 'list_items'=>$list_items, 'divider'=>$divider);
+        return $this;
     }
     
     public function addListHeader($name) 
     {
         $c = $this->lastSection();
         $this->sections[$c]['list_header'] = $name;
+        return $this;
     }
     
     public function addListItem($name, $url=null, $icon=null)
@@ -26,11 +28,13 @@ class NavLists extends ComponentBase
             $icon = 'icon-'.$icon;
             
         $this->sections[$c]['list_items'][] = array('name'=>$name, 'url'=>$url, 'icon'=>$icon, 'active'=>false);
+        return $this;
     }
     
     public function addDivider()
     {
         $this->addSection(null, array(), true);
+        return $this;
     }
 
     public function makeActive($name)
@@ -49,7 +53,7 @@ class NavLists extends ComponentBase
                 } 
             }
         }
-    
+        return $this;
     }
 
     private function lastSection()

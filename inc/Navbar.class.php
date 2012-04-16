@@ -20,6 +20,7 @@ class Navbar extends ComponentBase {
     public function addBrandname($name) 
     {
         $this->brandname = $name;
+        return $this;
     }
     
     public function addNavList($pull=null)
@@ -29,6 +30,7 @@ class Navbar extends ComponentBase {
             'pull' => $this->checkPull($pull),
             'list_items' => array()
         );
+        return $this;
     }
     
     public function addListItem($name, $url=null)
@@ -42,6 +44,7 @@ class Navbar extends ComponentBase {
         }
         
         $this->sections[$c]['list_items'][] = array('name'=>$name, 'url'=>$url, 'active'=>false);
+        return $this;
     }
     
     public function makeActive($name)
@@ -63,6 +66,7 @@ class Navbar extends ComponentBase {
                 }
             }
         }
+        return $this;
     }    
     
     public function addNavForm($type, $action=null, $pull=null)
@@ -72,6 +76,7 @@ class Navbar extends ComponentBase {
             'action' => $action,
             'pull' => $this->checkPull($pull)
         );
+        return $this;
     }
     
     public function addNavText($content, $pull=null)
@@ -80,7 +85,8 @@ class Navbar extends ComponentBase {
             'type' => array('text' => true),
             'content' => $content,
             'pull' => $this->checkPull($pull)
-        );        
+        );
+        return $this;        
     }
     
 

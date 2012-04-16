@@ -1,0 +1,12 @@
+<div class="alert {{type}} {{#block}}alert-block{{/block}}">
+  {{#closeable}}<a class="close" data-dismiss="alert">×</a>{{/closeable}}
+  {{#heading}}
+    {{^block}}
+        <strong>{{& heading}}</strong>
+    {{/block}}
+    {{#block}}
+        <h4 class="alert-heading">{{& heading}}</h4>
+    {{/block}}
+  {{/heading}}
+  {{& content}}
+</div>

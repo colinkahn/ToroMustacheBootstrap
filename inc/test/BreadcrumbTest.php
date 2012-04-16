@@ -51,5 +51,25 @@ class BreadcrumbTest extends PHPUnit_Framework_TestCase
        $this->assertEquals(true, $sa['active']);       
     }
     
+    public function testShorterSyntax()
+    {
+       $bc = new Breadcrumbs();
+       $bc
+            ->add('Home', '/')
+            ->add('Gallery', 'gallery');
+            
+       $a = (array)$bc;
+       $sa = $a['list_items'][0];
+       $this->assertEquals('Home', $sa['name']);
+       $this->assertEquals(true, $sa['divider']);
+       $this->assertEquals(false, $sa['active']);
+    
+       $sa = $a['list_items'][1];
+       $this->assertEquals('Gallery', $sa['name']);
+       $this->assertEquals(false, $sa['divider']);
+       $this->assertEquals(true, $sa['active']);        
+    
+    }
+    
 }
 ?>

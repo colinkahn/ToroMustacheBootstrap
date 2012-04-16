@@ -1,5 +1,7 @@
 <?php
 
+use tbcomponents\Alert;
+
 class MainHandler extends ToroMustacheHandler {
     public $pagetitle = "Main Page";
     public $template = "{{> header }}{{> navigation }}{{> content }}{{> footer }}";
@@ -10,8 +12,6 @@ class MainHandler extends ToroMustacheHandler {
         $this->render();
     }
 }
-
-
 
 class TestHandler extends ToroMustacheHandler {
     public $pagetitle = "Test Page";
@@ -105,11 +105,11 @@ class SignUpHandler extends ToroMustacheHandler {
         $this->signature = $_POST['signature'];
                 
         if (!$this->signature) {
-            $this->alert = Alert::status('fail');
+            $this->alert = new Alert('Hold on!', 'Fill out your name dumbass.', Alert::ERROR, true);
         } else if ($this->db->checkSignature($this->signature)) {
-            $this->alert = Alert::status('exists');
+            $this->alert = new Alert('Yo yo yo!', "You've already signed up for more pretzels bro!", Alert::ERROR, true);
         } else {
-            $this->alert = Alert::status('success');
+            $this->alert = new Alert('Alright!', 'Hey thanks! We\'re one step closer to getting that awesome pretzel rack! <a href="{{basedir}}signatures">Check out who else has signed.</a>', Alert::SUCCESS, true);
             $this->db->addSignature($this->signature);
         }
         

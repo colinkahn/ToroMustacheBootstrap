@@ -42,7 +42,7 @@ class NavbarTest extends PHPUnit_Framework_TestCase
     public function testAddBrandname()
     {
         $navbar = new Navbar();
-        $navbar->addBrandname('Toro Micro Framwork', ' ');
+        $navbar->addBrandname('Toro Micro Framwork');
                 
         $a = (array)$navbar;
         $this->assertArrayHasKey('brandname',  $a);
@@ -149,8 +149,14 @@ class NavbarTest extends PHPUnit_Framework_TestCase
         
         $navbar->addNavForm(Navbar::SEARCH, 'form/action', Navbar::PULL_RIGHT); 
         
-        $navbar->addNavText('Some Text', Navbar::PULL_LEFT);      
-    
+        $navbar->addNavText('Some Text', Navbar::PULL_LEFT);
+        
+        $a = (array)$navbar;
+        $this->assertEquals(4, count($a['sections']));
+        $this->assertEquals('pull-right', $a['sections'][0]['pull']);
+        $this->assertEquals('pull-right', $a['sections'][1]['pull']);
+        $this->assertEquals('pull-right', $a['sections'][2]['pull']);
+        $this->assertEquals('pull-left', $a['sections'][3]['pull']);
     }
     
     public function testErrorOnNonLinkAddLink()
@@ -167,6 +173,65 @@ class NavbarTest extends PHPUnit_Framework_TestCase
         $this->setExpectedException('tbcomponents\InvalidPullTypeException');
         $navbar = new Navbar();
         $navbar->addNavText('Some Text', 'foo');        
+    }
+    
+    public function testShorterSyntax()
+    {
+        $navbar = new Navbar();
+        
+        $navbar
+            ->addBrandname('Toro Micro Framwork')
+            ->addNavList()
+                ->addListItem('Home', ' ')
+                ->addListItem('Gallery', 'gallery')     
+            ->addNavForm(Navbar::SEARCH, 'form/action')
+            ->addNavText('Some Text');  
+
+        $a = (array)$navbar;
+
+        $this->assertEquals(3, count($a['sections']));
+        
+        $this->assertArrayHasKey('brandname',  $a);
+        $this->assertEquals('Toro Micro Framwork', $a['brandname']);        
+        
+        $this->assertArrayHasKey('type', $a['sections'][0]);
+        $this->assertArrayHasKey('navlist', $a['sections'][0]['type']);
+        $this->assertEquals(true, $a['sections'][0]['type']['navlist']);
+        
+        $this->assertArrayHasKey('pull', $a['sections'][0]);
+        $this->assertEquals('pull-left', $a['sections'][0]['pull']);
+        
+        $this->assertArrayHasKey('list_items', $a['sections'][0]);
+        $this->assertEquals(2, count($a['sections'][0]['list_items']));
+        
+        $this->assertArrayHasKey('name', $a['sections'][0]['list_items'][0]);
+        $this->assertArrayHasKey('url', $a['sections'][0]['list_items'][0]);
+        $this->assertArrayHasKey('active', $a['sections'][0]['list_items'][0]);
+        
+        $this->assertEquals('Home', $a['sections'][0]['list_items'][0]['name']);
+        $this->assertEquals(' ', $a['sections'][0]['list_items'][0]['url']);
+        $this->assertEquals(false, $a['sections'][0]['list_items'][0]['active']);   
+
+        $this->assertArrayHasKey('type', $a['sections'][1]);
+        $this->assertArrayHasKey('search', $a['sections'][1]['type']);
+        $this->assertEquals(true, $a['sections'][1]['type']['search']);
+ 
+        $this->assertArrayHasKey('pull', $a['sections'][1]);
+        $this->assertEquals('pull-left', $a['sections'][1]['pull']);
+        
+        $this->assertArrayHasKey('action', $a['sections'][1]);
+        $this->assertEquals('form/action', $a['sections'][1]['action']);           
+
+        $this->assertArrayHasKey('type', $a['sections'][2]);
+        $this->assertArrayHasKey('text', $a['sections'][2]['type']);
+        $this->assertEquals(true, $a['sections'][2]['type']['text']);
+
+        $this->assertArrayHasKey('pull', $a['sections'][2]);
+        $this->assertEquals('pull-left', $a['sections'][2]['pull']);        
+        
+        $this->assertArrayHasKey('content', $a['sections'][2]);
+        $this->assertEquals('Some Text', $a['sections'][2]['content']); 
+    
     }
 
     

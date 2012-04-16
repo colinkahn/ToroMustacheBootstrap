@@ -20,6 +20,8 @@ class Breadcrumbs extends ComponentBase
             // Remove active from previous item
             $this->list_items[$c]['active'] = false;
         }
+        
+        return $this;
     }
     
     public function remove($name) 
