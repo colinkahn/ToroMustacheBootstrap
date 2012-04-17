@@ -12,6 +12,7 @@ require_once 'inc/ComponentBase.class.php';
 require_once 'inc/Navbar.class.php';
 require_once 'inc/NavLists.class.php';
 require_once 'inc/Breadcrumbs.class.php';
+require_once 'inc/Tabbable.class.php';
 require_once 'inc/Alert.class.php';
 require_once 'inc/Utilities.php';
 require_once 'Components.php';

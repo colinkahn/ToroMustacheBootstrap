@@ -37,6 +37,7 @@ class Components {
                 ->addListItem('WYSIWYG', 'wysiwyg')
                 ->addListItem('Gallery', 'gallery')
                 ->addListItem('Sign Up', 'signup')
+                ->addListItem('Tabbable', 'tabs')
             ->addNavForm(Navbar::SEARCH, 'search', Navbar::PULL_RIGHT);
     
         return $navigation;   
@@ -48,6 +49,18 @@ class Components {
         $bc->add('Home',Settings::HOME);
         
         return $bc;
+    }
+    
+    public static function tabs()
+    {
+        $tabbable = new Tabbable();
+        $tabbable
+            ->add('Tab1', 'My Tab1 Content')
+            ->add('Tab2', 'My Tab2 Content')
+            ->add('Another Tab', 'My Another tab content');
+            //->makeActive('Tab2');
+            
+        return $tabbable;
     }
 
 }

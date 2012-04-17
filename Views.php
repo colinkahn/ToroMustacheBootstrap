@@ -118,12 +118,25 @@ class SignUpHandler extends ToroMustacheHandler {
 
 }
 
+
+
 class SignaturesHandler extends ToroMustacheHandler {
     public $pagetitle = "Signatures";
     public $template = "{{> header }}{{> navigation }}{{> signatures }}{{> footer }}";
 
     public function get() {
         $this->signatures = $this->db->getSignatures();
+        $this->render();
+    }
+
+}
+
+
+class TabbableHandler extends ToroMustacheHandler {
+    public $pagetitle = "Tabbable";
+    public $template = "{{> header }}{{> navigation }}{{> tabsexample }}{{> footer }}";
+
+    public function get() {
         $this->render();
     }
 

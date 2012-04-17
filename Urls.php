@@ -8,4 +8,5 @@ $site = new ToroApplication(array(
     array('gallery', 'GalleryHandler'),
     array('signup', 'SignUpHandler'),
     array('signatures', 'SignaturesHandler'),
+    array('tabs', 'TabbableHandler'),
 ));  
