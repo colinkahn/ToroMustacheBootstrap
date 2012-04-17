@@ -6,6 +6,7 @@ class Tabbable extends ComponentBase
 {
     public $tabs = array();
     public $type = null;
+    public $below = false;
     public $template = "{{> tabbable }}";
     
     const BELOW = 'tabs-below';
@@ -15,6 +16,10 @@ class Tabbable extends ComponentBase
     public function __construct($type='')
     {            
         $this->type = $type;
+        
+        if ($this->type == self::BELOW)
+            $this->below = true;
+            
         parent::__construct();
     }
 

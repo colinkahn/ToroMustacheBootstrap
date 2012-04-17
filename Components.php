@@ -57,7 +57,7 @@ class Components {
         $tabbable
             ->add('Tab1', 'My Tab1 Content')
             ->add('Tab2', 'My Tab2 Content')
-            ->add('Another Tab', 'My Another tab content');
+            ->add('Another Tab', '{{> anothertab }}');
             //->makeActive('Tab2');
             
         return $tabbable;

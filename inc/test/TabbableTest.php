@@ -7,7 +7,8 @@ use tbcomponents\Tabbable;
 
 /* Structure
     array(
-        'type'=> '' | tabs-below | tabs-left | tabs-right;
+        'type'=> '' | tabs-below | tabs-left | tabs-right,
+        'below'=>false | true,
         'tabs'=>
             array(
                 array('name'=>'Tab Title', 'content'=><ComponentBase Instance>, 'anchor'=>'tab_title', 'active'=>true | false)
@@ -29,7 +30,11 @@ class TabbableTest extends PHPUnit_Framework_TestCase
         
         $this->assertArrayHasKey('type',  $a);
         $this->assertArrayHasKey('tabs',  $a);
+        $this->assertArrayHasKey('below',  $a);
         
+        $this->assertEquals(false, $a['below']);
+        
+        $this->assertEquals('', $a['type']);
         $this->assertEquals(2, count($a['tabs']));
         
         $this->assertArrayHasKey('name',  $a['tabs'][0]);
@@ -41,6 +46,19 @@ class TabbableTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('My Tab1 Content', (string)$a['tabs'][0]['content']);
         $this->assertEquals('tab1', $a['tabs'][0]['anchor']);
         $this->assertEquals(true, $a['tabs'][1]['active']);
+    }
+    
+    public function testTabsBelow()
+    {
+        $tabs = new Tabbable(Tabbable::BELOW);
+        $tabs->add('Tab1', 'My Tab1 Content');
+        $tabs->add('Tab2', 'My Tab2 Content'); 
+        
+        $a = (array)$tabs;
+        
+        $this->assertEquals('tabs-below', $a['type']); 
+        $this->assertArrayHasKey('below',  $a);  
+        $this->assertEquals(true, $a['below']);    
     }
     
 }
