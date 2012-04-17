@@ -61,5 +61,26 @@ class TabbableTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(true, $a['below']);    
     }
     
+    public function testInvalidTabbableType()
+    {
+        $this->setExpectedException('tbcomponents\InvalidTabbableTypeException');
+        $tabs = new Tabbable('foo');
+    }
+    
+    public function testAddingToTabContext()
+    {
+        $tabs = new Tabbable(Tabbable::NORMAL);
+        $tabs->add('Tab1', 'My Tab1 Content');
+        $tabs->add('Tab2', 'My Tab2 Content');
+        $tabs->addToTabContext('Tab2', array('specialvalue'=>'foo', 'bar'=>true));
+        
+        $a = (array)$tabs;
+        $c = (array)$a['tabs'][1]['content'];
+        $this->assertArrayHasKey('specialvalue',  $c);
+        $this->assertArrayHasKey('bar',  $c); 
+        $this->assertEquals('foo', $c['specialvalue']);
+        $this->assertEquals(true, $c['bar']);
+    }
+    
 }
 ?>

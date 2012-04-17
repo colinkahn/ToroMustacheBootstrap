@@ -1,6 +1,9 @@
 <?php
 
 namespace tbcomponents;
+use Exception;
+
+class InvalidTabbableTypeException extends Exception { }
 
 class Tabbable extends ComponentBase
 {
@@ -9,12 +12,17 @@ class Tabbable extends ComponentBase
     public $below = false;
     public $template = "{{> tabbable }}";
     
+    const NORMAL = '';
     const BELOW = 'tabs-below';
     const LEFT = 'tabs-left';
     const RIGHT = 'tabs-right';    
 
-    public function __construct($type='')
-    {            
+    public function __construct($type=null)
+    {   
+        if ( is_null($type) )
+            $type = self::NORMAL;
+        
+        $this->checkType($type);    
         $this->type = $type;
         
         if ($this->type == self::BELOW)
@@ -56,6 +64,24 @@ class Tabbable extends ComponentBase
             } 
         }
         return $this;
-    }    
+    }
+    
+    public function addToTabContext($name, $data=array())
+    {
+        foreach($this->tabs as &$tab)
+        {
+            if ($tab['name'] == $name) 
+            {
+                $tab['content']->addToContext($data);
+                return $this;
+            } 
+        }    
+    }
+    
+    private function checkType($type)
+    {
+        if ( !in_array($type, array(self::NORMAL, self::BELOW, self::LEFT, self::RIGHT)) )
+            throw new InvalidTabbableTypeException('Invalid Tabbable Type');
+    }
 
 }
