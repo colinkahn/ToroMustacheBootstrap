@@ -3,7 +3,7 @@
 class ToroMustacheHandler extends ToroHandler
 {
     public function __construct() { 
-        $this->db = new Database('db');
+        $this->app = new App();
     
         $meths = get_static_methods('tbcomponents\Components');
         

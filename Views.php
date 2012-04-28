@@ -106,11 +106,11 @@ class SignUpHandler extends ToroMustacheHandler {
                 
         if (!$this->signature) {
             $this->alert = new Alert('Hold on!', 'Fill out your name dumbass.', Alert::ERROR, true);
-        } else if ($this->db->checkSignature($this->signature)) {
+        } else if ($this->app->checkSignature($this->signature)) {
             $this->alert = new Alert('Yo yo yo!', "You've already signed up for more pretzels bro!", Alert::ERROR, true);
         } else {
             $this->alert = new Alert('Alright!', 'Hey thanks! We\'re one step closer to getting that awesome pretzel rack! <a href="{{basedir}}signatures">Check out who else has signed.</a>', Alert::SUCCESS, true);
-            $this->db->addSignature($this->signature);
+            $this->app->addSignature($this->signature);
         }
         
         $this->get();
@@ -125,7 +125,7 @@ class SignaturesHandler extends ToroMustacheHandler {
     public $template = "{{> header }}{{> navigation }}{{> signatures }}{{> footer }}";
 
     public function get() {
-        $this->signatures = $this->db->getSignatures();
+        $this->signatures = $this->app->getSignatures();
         $this->render();
     }
 
